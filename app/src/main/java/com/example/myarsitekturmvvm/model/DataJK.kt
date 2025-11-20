@@ -4,7 +4,7 @@ import com.example.myarsitekturmvvm.R
 
 object DataJK {
 
-    val JenisK= listOf(
+    val Jenis = listOf(
         R.string.laki,
         R.string.wanita
     )

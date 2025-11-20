@@ -12,20 +12,19 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.example.myarsitekturmvvm.R
+import com.example.myarsitekturmvvm.model.Siswa
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun FormSiswa(
     modifier: Modifier = Modifier,
     pilihanJK: List<String>,
-    onSubmit: (MutableList<String>) -> Unit
+    onSubmitButtonClicked: (Siswa) -> Unit
 ) {
 
     var textNama by remember { mutableStateOf("") }
     var textAlamat by remember { mutableStateOf("") }
     var textGender by remember { mutableStateOf("") }
-
-    val listData: MutableList<String> = mutableListOf(textNama, textAlamat, textGender)
 
     Scaffold(
         modifier = Modifier,
@@ -102,8 +101,16 @@ fun FormSiswa(
 
             Button(
                 modifier = Modifier.fillMaxWidth(),
-                enabled = textAlamat.isNotEmpty(),
-                onClick = { onSubmit(listData) }
+                enabled = textNama.isNotEmpty() && textGender.isNotEmpty() && textAlamat.isNotEmpty(),
+                onClick = {
+                    onSubmitButtonClicked(
+                        Siswa(
+                            nama = textNama,
+                            gender = textGender,
+                            alamat = textAlamat
+                        )
+                    )
+                }
             ) {
                 Text(text = stringResource(id = R.string.submit))
             }
