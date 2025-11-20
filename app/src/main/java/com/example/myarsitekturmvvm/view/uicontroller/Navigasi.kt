@@ -39,3 +39,10 @@ fun SiswaApp(
                     pilihanJK = DataJK.Jenis.map { id ->
                         konteks.getString(id)
                     },
+                    onSubmitButtonClicked = {
+                        viewModel.setSiswa(it)
+                        navController.navigate(route = Navigasi.Detail.name)
+                    }
+                )
+            }
+
